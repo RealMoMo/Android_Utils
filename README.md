@@ -1,6 +1,6 @@
 ##Android Utils
 
-收集RealMo在开发的工具类
+收集本人在Android开发的使用工具类
 
 
 
@@ -9,7 +9,7 @@
 RealMoMo
 > 关于我，欢迎关注  
    微信：[Real_Mo]()  
-   邮箱：czb166@qq.com
+   邮箱：momo_weiye@126.com
 -------------
 ####工具类: 
 
