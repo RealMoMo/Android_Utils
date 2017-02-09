@@ -1,8 +1,5 @@
 ##Android Utils
 
-收集本人在Android开发的使用工具类
-
-
 
 ---
 关于作者：
