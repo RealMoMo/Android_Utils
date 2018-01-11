@@ -19,6 +19,8 @@ public abstract class AbstractBaseAdapter<T> extends BaseAdapter{
     LayoutInflater inflater;
     //布局资源
     int[] layoutId;
+	
+	int countSum = -1;
 
     //构造方法
     public AbstractBaseAdapter(Context context,  List<T> data ,int ...layoutId) {
@@ -26,15 +28,40 @@ public abstract class AbstractBaseAdapter<T> extends BaseAdapter{
         this.data = data;
         inflater = LayoutInflater.from(context);
     }
+	
+	
+	    /**
+     * 定义itemCount
+     */
+    public void setCount(int count)
+    {
+        countSum = count;
+        //this.notifyDataSetChanged();
+       
+    }
 
     @Override
     public int getCount() {
-        return data.size();
+        if (countSum == -1)
+        {
+            return data.size();
+        }
+        else
+        {
+            return countSum;
+        }
     }
 
     @Override
     public Object getItem(int position) {
-        return data.get(position);
+        if (countSum == -1)
+        {
+            return data.get(position);
+        }
+        else
+        {
+            return data.get(countSum % data.size());
+        }
     }
 
     @Override
