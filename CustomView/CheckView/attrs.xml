@@ -1,0 +1,5 @@
+﻿<declare-styleable name="CTickView">
+    <attr name="ctvColor" format="color" />
+    <attr name="ctvColorCircle" format="color" />
+    <attr name="ctvStrokeWidth" format="dimension" />
+</declare-styleable>
