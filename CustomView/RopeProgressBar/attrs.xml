@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="RopeProgressBar">
+        <attr name="ropeMax" format="integer"/>
+        <attr name="ropeProgress" format="integer"/>
+        <attr name="ropePrimaryColor" format="color"/>
+        <attr name="ropeSecondaryColor" format="color"/>
+        <attr name="ropeSlack" format="dimension"/>
+        <attr name="ropeStrokeWidth" format="dimension"/>
+        <attr name="ropeDynamicLayout" format="boolean"/>
+    </declare-styleable>
+
+</resources>
