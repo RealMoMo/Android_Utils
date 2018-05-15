@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PureVerticalSeekBar">
+        <attr name="vertical_color" format="color" />
+        <attr name="circle_radius" format="dimension" />
+        <attr name="circle_color" format="color" />
+        <attr name="dragable" format="boolean" />
+        <attr name="image_thumb" format="reference" />
+        <attr name="image_progressbar" format="reference" />
+    </declare-styleable>
+
+
+
+</resources>
