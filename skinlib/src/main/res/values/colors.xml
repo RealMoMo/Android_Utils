@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="half_transparent">#88898989</color>
+    <color name="color_bg_shape">#4C4C4C</color>
+    <color name="no_signal_text_color">#88FFFFFF</color>
+    <color name="no_signal_color">#4CFFFFFF</color>
+    <color name="color_blue">#00CBFF</color>
+    <color name="color_gray">#595757</color>
+    <color name="def_wheel_color">#4E4988</color>
+    <color name="def_reached_color">#FFD844</color>
+    <color name="def_pointer_color">#FFFFFF</color>
+    <color name="color_transparent">#4DFFFFFF</color>
+    <color name="all_transparent">#00000000</color>
+    <color name="color_red">#FF0000</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="color_white_light">#BCFFFFFF</color>
+    <color name="color_green">#ff4db812</color>
+</resources>

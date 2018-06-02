@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">support</string>
+
+    <string name="str_ops">Built-in PC</string>
+    <string name="str_front">HDMI Front</string>
+    <string name="str_hdmi1">HDMI 1</string>
+    <string name="str_hdmi2">HDMI 2</string>
+    <string name="str_hdmi3">HDMI 3</string>
+    <string name="str_dp">DisplayPort</string>
+    <string name="str_vga">VGA</string>
+</resources>
