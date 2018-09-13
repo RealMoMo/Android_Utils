@@ -18,10 +18,10 @@ import com.hht.rsquicksetting.R;
 
 /**
  * @author Realmo
- * @version 1.0.0
+ * @version 1.1.0
  * @name PureVerticalSeekBar
  * @email momo.weiye@gmail.com
- * @time 2018/4/21 14:35
+ * @time 2018/9/13 10:00
  * @describe
  */
 public class PureVerticalSeekBar extends View {
@@ -36,7 +36,7 @@ public class PureVerticalSeekBar extends View {
     private float x, y;
     private float mRadius;
     private float progress;
-    private float maxCount = 100f;
+    private int maxProgress = 100;
     private float sLeft, sTop, sRight, sBottom;
     private float sWidth, sHeight;
     private LinearGradient linearGradient;
@@ -56,6 +56,9 @@ public class PureVerticalSeekBar extends View {
     private boolean dragable = true;
 
     private boolean fromUser = false;
+
+    //百分比进度 = 1 / maxProgress
+    private float percentageProgress = 0.01f;
 
 
     public PureVerticalSeekBar(Context context) {
@@ -82,6 +85,10 @@ public class PureVerticalSeekBar extends View {
         vertical_color = a.getColor(R.styleable.PureVerticalSeekBar_vertical_color, Color.GRAY);
         thumbResId = a.getResourceId(R.styleable.PureVerticalSeekBar_image_thumb, 0);
         progressBarId = a.getResourceId(R.styleable.PureVerticalSeekBar_image_progressbar,0);
+        maxProgress = a.getInteger(R.styleable.PureVerticalSeekBar_max_progress,100);
+
+        setPercentageProgress(maxProgress);
+
         a.recycle();
         setCircle_color(thumbColor);
         setVertical_color(vertical_color);
@@ -93,6 +100,11 @@ public class PureVerticalSeekBar extends View {
         if(progressBarId != 0 && bitmapBar == null){
             bitmapBar = BitmapFactory.decodeResource(getResources(), progressBarId);
         }
+    }
+
+
+    private void setPercentageProgress(int maxProgress){
+        percentageProgress = 1f/maxProgress;
     }
 
     /**
@@ -193,6 +205,24 @@ public class PureVerticalSeekBar extends View {
         invalidate();
     }
 
+
+    public int getMaxProgress() {
+        return maxProgress;
+    }
+
+    public void setMaxProgress(int maxProgress) {
+
+        this.maxProgress = maxProgress;
+        setPercentageProgress(this.maxProgress);
+        this.progress = (progress > this.maxProgress ? this.maxProgress : progress);
+
+        fromUser =false;
+        if (onSlideChangeListener != null) {
+            onSlideChangeListener.onSeekBarChangeListener(this, (int)this.progress,fromUser);
+        }
+        invalidate();
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -212,10 +242,10 @@ public class PureVerticalSeekBar extends View {
             sWidth = sRight - sLeft;
             sHeight = sBottom - sTop;
             x = (float) w / 2;
-            y = (float) (1 - 0.01 * progress) * sHeight;
+            y =  (1 - percentageProgress * progress) * sHeight;
         } else {
 
-            int outH = (int) (bitmapThumb.getHeight() * getMeasuredWidth() / bitmapThumb.getWidth());
+            int outH =  (bitmapThumb.getHeight() * getMeasuredWidth() / bitmapThumb.getWidth());
             if (circle_radius == 0) {
                 mRadius = (float) outH / 2;
             } else {
@@ -228,7 +258,7 @@ public class PureVerticalSeekBar extends View {
             sWidth = sRight - sLeft;
             sHeight = sBottom - sTop;
             x = (float) w / 2;
-            y = (float) (1 - 0.01 * progress) * sHeight;
+            y = (1 - percentageProgress * progress) * sHeight;
         }
 
         drawProgressBar(canvas);
@@ -266,7 +296,7 @@ public class PureVerticalSeekBar extends View {
             return true;
         }
         this.y = event.getY();
-        progress = (sHeight - y) / sHeight * 100;
+        progress = (sHeight - y) / sHeight * maxProgress;
 
         onSlideProgress(event, progress);
 
@@ -286,10 +316,10 @@ public class PureVerticalSeekBar extends View {
     }
 
     public void setProgress(int progress) {
-        this.progress = progress;
+        this.progress = (progress > maxProgress ? maxProgress : progress);
         fromUser =false;
         if (onSlideChangeListener != null) {
-            onSlideChangeListener.onSeekBarChangeListener(this, (int)progress,fromUser);
+            onSlideChangeListener.onSeekBarChangeListener(this, (int)this.progress,fromUser);
         }
         invalidate();
     }
@@ -309,12 +339,12 @@ public class PureVerticalSeekBar extends View {
         if (progress < 0) {
             progress = 0;
         }
-        if (progress > 100) {
-            progress = 100;
+        if (progress > maxProgress) {
+            progress = maxProgress;
         }
+        fromUser = true;
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                fromUser = true;
                 if (onSlideChangeListener != null) {
                     onSlideChangeListener.onStartTrackingTouch(this);
                 }
