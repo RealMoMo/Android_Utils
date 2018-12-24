@@ -8,6 +8,7 @@
         <attr name="image_thumb" format="reference" />
         <attr name="image_progressbar" format="reference" />
         <attr name="max_progress" format="integer"/>
+		 <attr name="min_progress" format="integer"/>
     </declare-styleable>
 
 
