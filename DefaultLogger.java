@@ -4,18 +4,16 @@ import android.text.TextUtils;
 import android.util.Log;
 
 
-
 /**
  * Default logger
- *
  */
-public class DefaultLogger  {
+public class DefaultLogger {
 
     private static boolean isShowLog = true;
     private static boolean isShowStackTrace = true;
     private static boolean isMonitorMode = false;
 
-    private static String TAG = "RealMo";
+    private static String TAG = "realmo";
 
     public static void showLog(boolean showLog) {
         isShowLog = showLog;
@@ -30,12 +28,25 @@ public class DefaultLogger  {
     }
 
 
-
+    public static void debug(String message) {
+        if (isShowLog) {
+            StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[3];
+            Log.d(TAG, message + getExtInfo(stackTraceElement));
+        }
+    }
 
     public static void debug(String tag, String message) {
         if (isShowLog) {
             StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[3];
-            Log.d(TextUtils.isEmpty(tag) ? getTAG() : tag, message + getExtInfo(stackTraceElement));
+            Log.d(TextUtils.isEmpty(tag) ? TAG : tag, message + getExtInfo(stackTraceElement));
+        }
+    }
+
+
+    public static void info(String message) {
+        if (isShowLog) {
+            StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[3];
+            Log.i(TAG, message + getExtInfo(stackTraceElement));
         }
     }
 
@@ -43,7 +54,14 @@ public class DefaultLogger  {
     public static void info(String tag, String message) {
         if (isShowLog) {
             StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[3];
-            Log.i(TextUtils.isEmpty(tag) ? getTAG() : tag, message + getExtInfo(stackTraceElement));
+            Log.i(TextUtils.isEmpty(tag) ? TAG : tag, message + getExtInfo(stackTraceElement));
+        }
+    }
+
+    public static void warning(String message) {
+        if (isShowLog) {
+            StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[3];
+            Log.w(TAG, message + getExtInfo(stackTraceElement));
         }
     }
 
@@ -51,7 +69,15 @@ public class DefaultLogger  {
     public static void warning(String tag, String message) {
         if (isShowLog) {
             StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[3];
-            Log.w(TextUtils.isEmpty(tag) ? getTAG() : tag, message + getExtInfo(stackTraceElement));
+            Log.w(TextUtils.isEmpty(tag) ? TAG : tag, message + getExtInfo(stackTraceElement));
+        }
+    }
+
+
+    public static void error(String message) {
+        if (isShowLog) {
+            StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[3];
+            Log.e(TAG, message + getExtInfo(stackTraceElement));
         }
     }
 
@@ -59,7 +85,7 @@ public class DefaultLogger  {
     public static void error(String tag, String message) {
         if (isShowLog) {
             StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[3];
-            Log.e(TextUtils.isEmpty(tag) ? getTAG() : tag, message + getExtInfo(stackTraceElement));
+            Log.e(TextUtils.isEmpty(tag) ? TAG : tag, message + getExtInfo(stackTraceElement));
         }
     }
 
@@ -76,10 +102,6 @@ public class DefaultLogger  {
         return isMonitorMode;
     }
 
-
-    public static String getTAG() {
-        return TAG;
-    }
 
     public static String getExtInfo(StackTraceElement stackTraceElement) {
 
