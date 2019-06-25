@@ -1,91 +1,37 @@
-﻿package com.realmo.utils;
+package com.hht.baselib.ui;
 
 import android.content.Context;
 import android.widget.Toast;
 
 /**
- * Toast统一管理类
- * 
+ * @author Realmo
+ * @version 1.0.0
+ * @name
+ * @email momo.weiye@gmail.com
+ * @time 2019/6/24 9:39
+ * @describe
  */
-public class ToastUtils
-{
+public class ToastUtils {
 
-	
+    private static Toast mToast;
 
-	public static boolean isShow = true;
+    public static void toast(Context context,String text,int duration){
+        if(mToast != null){
+            mToast.cancel();
+        }
+        mToast = Toast.makeText(context,text,duration);
+        mToast.show();
+    }
 
-	/**
-	 * 短时间显示Toast
-	 * 
-	 * @param context
-	 * @param message
-	 */
-	public static void showShort(Context context, CharSequence message)
-	{
-		if (isShow)
-			Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-	}
 
-	/**
-	 * 短时间显示Toast
-	 * 
-	 * @param context
-	 * @param message
-	 */
-	public static void showShort(Context context, int message)
-	{
-		if (isShow)
-			Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-	}
+    public static void toast(Context context,int textId,int duration){
+        if(mToast != null){
+            mToast.cancel();
+        }
+        mToast = Toast.makeText(context,context.getText(textId),duration);
+        mToast.show();
+    }
 
-	/**
-	 * 长时间显示Toast
-	 * 
-	 * @param context
-	 * @param message
-	 */
-	public static void showLong(Context context, CharSequence message)
-	{
-		if (isShow)
-			Toast.makeText(context, message, Toast.LENGTH_LONG).show();
-	}
 
-	/**
-	 * 长时间显示Toast
-	 * 
-	 * @param context
-	 * @param message
-	 */
-	public static void showLong(Context context, int message)
-	{
-		if (isShow)
-			Toast.makeText(context, message, Toast.LENGTH_LONG).show();
-	}
-
-	/**
-	 * 自定义显示Toast时间
-	 * 
-	 * @param context
-	 * @param message
-	 * @param duration
-	 */
-	public static void show(Context context, CharSequence message, int duration)
-	{
-		if (isShow)
-			Toast.makeText(context, message, duration).show();
-	}
-
-	/**
-	 * 自定义显示Toast时间
-	 * 
-	 * @param context
-	 * @param message
-	 * @param duration
-	 */
-	public static void show(Context context, int message, int duration)
-	{
-		if (isShow)
-			Toast.makeText(context, message, duration).show();
-	}
 
 }
