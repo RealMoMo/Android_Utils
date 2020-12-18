@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <declare-styleable name="LoadingView">
+        <attr name="layout_blockWidth_half" format="dimension"/>
+        <attr name="layout_blockMargin" format="dimension"/>
+        <attr name="layout_startPosition" format="integer"/>
+        <attr name="isClockwise" format="boolean"/>
+        <attr name="lines" format="integer"/>
+        <attr name="duration" format="integer"/>
+        <attr name="blockColor" format="color|reference"/>
+        <attr name="moveBlock_angle" format="float"/>
+        <attr name="fixBlock_angle" format="float"/>
+        <attr name="interpolator" format="reference"/>
+    </declare-styleable>
+
+
+//layout使用
+    <com.newline.ucos.launcher.widget.LoadingView
+        android:id="@+id/loadingView"
+        app:lines="3"
+        android:background="@drawable/subsetting_item_bg"
+        app:blockColor="@color/subsetting_text_input_color"
+        app:fixBlock_angle="10"
+        app:layout_blockMargin="4dp"
+        app:layout_startPosition="1"
+        app:layout_blockWidth_half="5dp"
+        app:moveBlock_angle="50"
+        app:duration="800"
+        android:layout_width="50dp"
+        android:layout_height="50dp"/>
+
+
+
+
+</resources>
